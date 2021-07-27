@@ -1,62 +1,81 @@
 package com.github.filecompress;
 
+import java.io.File;
 import java.util.*;
 
 public class HuffmanTree {
     /**
      * @param list 传入所有节点的 list
-     * @return 返回生成的哈夫曼树的根
+     * @return 返回哈夫曼树的根节点
      */
     public static Node createHuffmanTree(List<Node> list) {
-        while (list.size() > 1) {
-            Collections.sort(list);
-            // 获取权值最小的两个节点
-            Node left = list.get(0);
-            Node right = list.get(1);
-            // 生成新节点，新节点的权值为两个子节点权值的和
-            Node parent = new Node(null, left.weight + right.weight, left, right);
-            // 删除权值最小的两个节点
-            list.remove(0);
-            list.remove(0);
-            // 将新的节点添加到 list 中
-            list.add(parent);
+        PriorityQueue<Node> queue = new PriorityQueue<>();
+        for (int i = 0; i < list.size(); i++) {
+            queue.offer(list.get(i));
         }
-        return list.get(list.size() - 1);
+        return createHuffmanTree(queue);
     }
 
     /**
-     * 将 map 转换为节点的列表，key 作为 Node.e, value 作为 Node.weight
-     *
-     * @param map
-     * @return
+     * @param queue 按照节点的权值(node.weight) 由小到大维护的优先队列
+     * @return 返回哈夫曼树的根节点
      */
-    public static List<Node> mapToListNode(Map<Character, Integer> map) {
-        List<Node> res = new ArrayList<>();
-        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-            Character key = entry.getKey();
-            Integer value = entry.getValue();
-            Node node = new Node(key, value);
-            res.add(node);
+    public static Node createHuffmanTree(PriorityQueue<Node> queue) {
+        while (queue.size() > 1) {
+            Node left = queue.poll();
+            Node right = queue.poll();
+            Node parent = new Node(null, left.weight + right.weight, left, right);
+            queue.offer(parent);
         }
-        // 将 res 按照 value 的倒序进行排序
-        Collections.sort(res);
-        return res;
+        return queue.poll();
     }
 
-    public Map<Character, String> treeToHuffmanCode(Node root) {
+    /**
+     * @param root 传入哈夫曼树的根节点
+     * @return 返回带权路径长度 (WPL)
+     */
+    public static double getWPL(Node root) {
+        double ret = 0.0;
+        int level = 0;
+        if (root != null) {
+            Queue<Node> queue = new LinkedList<>();
+            queue.offer(root);
+            while (!queue.isEmpty()) {
+                int size = queue.size();
+                for (int i = 0; i < size; i++) {
+                    root = queue.poll();
+                    if (root.e != null) {
+                        ret += root.weight * level;
+                    }
+                    if (root.left != null)
+                        queue.offer(root.left);
+                    if (root.right != null)
+                        queue.offer(root.right);
+                }
+                level++;
+            }
+        }
+        return ret;
+    }
+
+
+    public static String encoding(File file, Map<Character, String> map) {
+        return null;
+    }
+
+    public static Map<Character, String> huffmanTreeNodeDataToCode(Node root) {
         Map<Character, String> map = new HashMap<>();
-        treeToHuffmanCode(root, map, "");
+        huffmanTreeNodeDataToCode(root, map, "");
         return map;
     }
 
-    public void treeToHuffmanCode(Node root, Map<Character, String> map, String code) {
+    private static void huffmanTreeNodeDataToCode(Node root, Map<Character, String> map, String code) {
         if (root != null) {
-            treeToHuffmanCode(root.left, map, code + "0");
+            huffmanTreeNodeDataToCode(root.left, map, code + "0");
             if (root.left == null && root.right == null) {
                 map.put((Character) root.e, code);
             }
-            treeToHuffmanCode(root.right, map, code + "1");
+            huffmanTreeNodeDataToCode(root.right, map, code + "1");
         }
-
     }
 }
