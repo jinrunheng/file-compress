@@ -76,6 +76,34 @@ public class FileHelper {
     }
 
     /**
+     * Huffman Code 的字符串形式 转换，并写入到文件中
+     *
+     * @param file 写入的文件
+     * @param map
+     * @param s
+     */
+    public static void codeStringToFile(File file, String s, Map<String, Character> map) {
+        int len = s.length();
+        int i = 0;
+        try (BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true)))) {
+            while (i < len) {
+                int j = 0;
+                String substring = s.substring(i, i + j);
+                while (!map.containsKey(substring)) {
+                    j++;
+                    substring = s.substring(i, i + j);
+                }
+                Character c = map.get(substring);
+                out.write(c.toString());
+                i += j;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
      * 将 Huffman 编码对应的字符串格式转换为二进制存储到文件中
      *
      * @param s
@@ -133,6 +161,12 @@ public class FileHelper {
         return list;
     }
 
+    /**
+     * 统计文件中每一个字符出现的次数
+     *
+     * @param file
+     * @return
+     */
     private static Map<Character, Integer> countFrequencyOfEachCharInFile(File file) {
         Map<Character, Integer> map = new HashMap<>();
         try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
@@ -149,5 +183,21 @@ public class FileHelper {
             e.printStackTrace();
         }
         return map;
+    }
+
+    /**
+     * 交换 map 的 key 和 value
+     *
+     * @param map
+     * @return
+     */
+    public static Map<String, Character> swapMapKV(Map<Character, String> map) {
+        Map<String, Character> swapMap = new HashMap<>();
+        for (Map.Entry<Character, String> entry : map.entrySet()) {
+            Character key = entry.getKey();
+            String value = entry.getValue();
+            swapMap.put(value, key);
+        }
+        return swapMap;
     }
 }

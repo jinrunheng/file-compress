@@ -63,6 +63,12 @@ public class HuffmanTree {
         return null;
     }
 
+    /**
+     * 将 Huffman 树所有节点对应的字符转化为 01 编码字符串
+     *
+     * @param root
+     * @return
+     */
     public static Map<Character, String> huffmanTreeNodeDataToCode(Node root) {
         Map<Character, String> map = new HashMap<>();
         huffmanTreeNodeDataToCode(root, map, "");

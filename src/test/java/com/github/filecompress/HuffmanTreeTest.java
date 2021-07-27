@@ -7,7 +7,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 class HuffmanTreeTest {
 
@@ -40,5 +40,8 @@ class HuffmanTreeTest {
         FileHelper.writeHuffmanCodeToFile(s);
         String s2 = FileHelper.readHuffmanFileToString();
         Assertions.assertEquals(s, s2);
+        Map<String, Character> swapMap = FileHelper.swapMapKV(map);
+        File newFile = new File("C:\\Users\\ASUS\\Desktop\\hello\\file-compress\\src\\main\\resources\\test2.txt");
+        FileHelper.codeStringToFile(newFile,s2,swapMap);
     }
 }
