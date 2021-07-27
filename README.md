@@ -7,8 +7,11 @@
 
 原本的大小为：451 KB
 
+![1](https://github.com/jinrunheng/file-compress/blob/main/src/main/resources/uncompress.JPG)
+
 压缩文件 test.huffman 的大小为：264 KB
 
+![2](https://github.com/jinrunheng/file-compress/blob/main/src/main/resources/compress.JPG)
 
 
 
