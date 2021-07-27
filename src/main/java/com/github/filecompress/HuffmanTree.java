@@ -58,11 +58,6 @@ public class HuffmanTree {
         return ret;
     }
 
-
-    public static String encoding(File file, Map<Character, String> map) {
-        return null;
-    }
-
     /**
      * 将 Huffman 树所有节点对应的字符转化为 01 编码字符串
      *
