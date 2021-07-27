@@ -1,6 +1,5 @@
 package com.github.filecompress;
 
-import java.io.File;
 import java.util.*;
 
 public class HuffmanTree {
