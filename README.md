@@ -13,5 +13,9 @@
 
 ![2](https://github.com/jinrunheng/file-compress/blob/main/src/main/resources/compress.JPG)
 
+并且，对压缩后的文件进行解码后成功还原了文件，两个文件大小一致
+
+![3](https://github.com/jinrunheng/file-compress/blob/main/src/main/resources/compress2.JPG)
+
 
 
