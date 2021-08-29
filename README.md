@@ -5,17 +5,17 @@
 
 程序将《Harry Potter and the Sorcerer's Stone》的原本进行压缩
 
-原本的大小为：451 KB
+原本的大小为：450 KB
 
-![1](https://github.com/jinrunheng/file-compress/blob/main/src/main/resources/uncompress.JPG)
+<img src="https://tva1.sinaimg.cn/large/008i3skNgy1gty1irr5dej60eg0fyab802.jpg" alt="image-20210829224345815" style="zoom:50%;" align="left"/>
 
-压缩文件 test.huffman 的大小为：264 KB
+压缩文件 test.huffman 的大小为：260 KB
 
-![2](https://github.com/jinrunheng/file-compress/blob/main/src/main/resources/compress.JPG)
+<img src="https://tva1.sinaimg.cn/large/008i3skNgy1gty1jrg91gj60em0f2my202.jpg" alt="image-20210829224452072" style="zoom:50%;" align="left"/>
 
 并且，对压缩后的文件进行解码后成功还原了文件，两个文件大小一致
 
-![3](https://github.com/jinrunheng/file-compress/blob/main/src/main/resources/compress2.JPG)
+<img src="https://tva1.sinaimg.cn/large/008i3skNgy1gty1lhl0ydj60te0fmmzp02.jpg" alt="image-20210829224628725" style="zoom:50%;" align="left"/>
 
 
 

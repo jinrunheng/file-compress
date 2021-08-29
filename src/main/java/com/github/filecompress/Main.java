@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        File testFile = new File("C:\\Users\\ASUS\\Desktop\\hello\\file-compress\\src\\main\\resources\\Harry Potter and the Sorcerer's Stone.txt");
+        File testFile = new File("src/main/resources/Harry Potter and the Sorcerer's Stone.txt");
         List<Node> list = FileHelper.fileToHuffmanNodeList(testFile);
         Node root = HuffmanTree.createHuffmanTree(list);
         Map<Character, String> map = HuffmanTree.huffmanTreeNodeDataToCode(root);
@@ -16,7 +16,7 @@ public class Main {
         String s2 = FileHelper.readHuffmanFileToString();
 
         Map<String, Character> swapMap = FileHelper.swapMapKV(map);
-        File newFile = new File("C:\\Users\\ASUS\\Desktop\\hello\\file-compress\\src\\main\\resources\\Harry Potter and the Sorcerer's Stone2.txt");
+        File newFile = new File("src/main/resources/Harry Potter and the Sorcerer's Stone2.txt");
         FileHelper.codeStringToFile(newFile,s2,swapMap);
     }
 }
